@@ -324,7 +324,8 @@
         optionList.appendChild(option);
       }
       this.content.innerHTML = '';
-      return this.content.appendChild(optionList);
+      this.content.appendChild(optionList);
+      return this.content.setAttribute('style', 'min-width:' + this.select.offsetWidth + 'px;');
     };
 
     Select.prototype.update = function() {

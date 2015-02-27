@@ -280,8 +280,7 @@ class Select extends Evented
 
   renderDrop: ->
     optionList = document.createElement 'ul'
-    addClass optionList, 'select-options'
-
+    addClass optionList, 'select-options'     
     for el in @select.querySelectorAll('option')
       option = document.createElement 'li'
       addClass option, 'select-option'
@@ -296,6 +295,7 @@ class Select extends Evented
 
     @content.innerHTML = ''
     @content.appendChild optionList
+    @content.setAttribute('style', 'min-width:' + @select.offsetWidth + 'px;')
 
   update: =>
     @renderDrop()
