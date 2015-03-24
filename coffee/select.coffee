@@ -295,7 +295,14 @@ class Select extends Evented
 
     @content.innerHTML = ''
     @content.appendChild optionList
-    @content.setAttribute('style', 'min-width:' + @select.offsetWidth + 'px;')
+    #@content.setAttribute('style', 'min-width:' + @select.offsetWidth + 'px !important;')
+    #if initWidth == 0
+    initWidth = @select.offsetWidth
+    isIE = false or !!document.documentMode
+    if  isIE
+        @content.setAttribute('style', 'min-width:' + ( initWidth - 17 )+ 'px !important;') 
+    else	
+        @content.setAttribute('style', 'min-width:' + initWidth + 'px !important;')
 
   update: =>
     @renderDrop()

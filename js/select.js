@@ -308,7 +308,7 @@
     };
 
     Select.prototype.renderDrop = function() {
-      var el, option, optionList, _i, _len, _ref1;
+      var el, initWidth, isIE, option, optionList, _i, _len, _ref1;
       optionList = document.createElement('ul');
       addClass(optionList, 'select-options');
       _ref1 = this.select.querySelectorAll('option');
@@ -325,7 +325,13 @@
       }
       this.content.innerHTML = '';
       this.content.appendChild(optionList);
-      return this.content.setAttribute('style', 'min-width:' + this.select.offsetWidth + 'px;');
+      initWidth = this.select.offsetWidth;
+      isIE = false || !!document.documentMode;
+      if (isIE) {
+        return this.content.setAttribute('style', 'min-width:' + (initWidth - 17) + 'px !important;');
+      } else {
+        return this.content.setAttribute('style', 'min-width:' + initWidth + 'px !important;');
+      }
     };
 
     Select.prototype.update = function() {
